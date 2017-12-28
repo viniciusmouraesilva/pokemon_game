@@ -24,11 +24,20 @@ if(!array_key_exists('snorlax',$_SESSION)) {
 }
 
 if($_SESSION['snorlax']['vida'][0] <= 0) {
+
+	if(isset($_SESSION['tempo_dormindo'])) { 
+		$var = $_SESSION['tempo_dormindo']; 
+	}
+
 	session_destroy();
+
+	setcookie('tempo_dormindo',"{$var}");
+
 	header('Location:perdeu/perdeu_fase2.php');
 	exit;
 }elseif($_SESSION['pikachu']['vida'][0] <= 0) {
 	session_destroy();
+
 	header('Location:perdeu/por_enquanto_e_so.php');
 	exit;
 }	
@@ -88,13 +97,13 @@ if($_SESSION['snorlax']['estado'] == '' or $_SESSION['snorlax']['estado'] != 'sl
 
 				if($_SESSION['snorlax']['estado'] != 'eletrizado') {
 
+					$_SESSION['snorlax']['vida'][0] = 40;
+
 					$resu = variar_ataque_pikachu();
 
 					$_SESSION['ataque'] = $resu;
 
 					jogarPikachu($resu);
-
-					$_SESSION['snorlax']['vida'][0] = 40;
 
 					$_SESSION['snorlax']['estado'] = 'sleep';
 
@@ -115,6 +124,8 @@ if($_SESSION['snorlax']['estado'] == '' or $_SESSION['snorlax']['estado'] != 'sl
 	$resu = variar_ataque_pikachu();
 
 	jogarPikachu($resu);
+
+	$_SESSION['tempo_dormindo'] += 1;
 
 	$_SESSION['snorlax']['estado'] = 'sleep'; 
 

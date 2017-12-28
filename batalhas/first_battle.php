@@ -21,11 +21,20 @@ if(!array_key_exists('snorlax',$_SESSION)) {
 }
 
 if($_SESSION['snorlax']['vida'][0] <= 0) {
+	
+	if(isset($_SESSION['tempo_dormindo'])) { 
+		$var = $_SESSION['tempo_dormindo']; 
+	}
+
 	session_destroy();
+
+	setcookie('tempo_dormindo',"{$var}");
+
 	header('Location:perdeu/perdeu_fase1.php');
 	exit;
 }elseif($_SESSION['monkey']['vida'][0] <= 0) {
 	session_destroy();
+
 	header('Location:second_battle.php');
 	exit;
 }	
@@ -73,14 +82,15 @@ if($_SESSION['snorlax']['estado'] == '') {
 
 				require_once 'pokemons_modos_de_jogo.php';
 
+				$_SESSION['snorlax']['vida'][0] = 40;
+				$_SESSION['snorlax']['estado'] = 'sleep';
+
 				$resu = variar_ataque_monkey();
 
 				$_SESSION['ataque'] = $resu;
 
 				jogarMonkey($resu);
-
-				$_SESSION['snorlax']['vida'][0] = 40;
-				$_SESSION['snorlax']['estado'] = 'sleep';
+				
 				header('Location:/pokemon_game/first_battle.php');
 				exit;
 			}
@@ -97,6 +107,8 @@ if($_SESSION['snorlax']['estado'] == '') {
 	$_SESSION['ataque'] = $resu;
 
 	jogarMonkey($resu);
+
+	$_SESSION['tempo_dormindo'] += 1;
 
 	$_SESSION['snorlax']['estado'] = 'sleep'; 
 

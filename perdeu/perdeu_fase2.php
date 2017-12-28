@@ -31,6 +31,8 @@
 			text-decoration: none;
 			font-family: arial, georgia, sans-serif;
 		}
+
+		
 	</style>
 
 </head>
@@ -39,6 +41,15 @@
 	<h1>Você perdeu... </h1>
 
 	<a href="../second_battle.php">Tentar Novamente</a>
+
+	<?php if(isset($_COOKIE['tempo_dormindo'])): ?>
+			
+			<?php $total_tempo_dormindo = $_COOKIE['tempo_dormindo']; ?>
+			
+			<p>Total em turnos dormindo: <?php print $total_tempo_dormindo; ?></p>
+
+			<?php setcookie('tempo_dormindo'); ?>
+	<?php endif; ?>
 
 </body>
 </html>

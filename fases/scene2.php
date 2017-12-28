@@ -24,7 +24,7 @@
 			flex-flow: row wrap;
 			width: 22%;
 			position: relative;
-			top: 30px;
+			top: 10px;
 			left: 120px;
 		}
 
@@ -60,6 +60,10 @@
 	<p class="enemy_status">Level: <?php print $level; ?></p>
 
 	<img src="imagens/pikachu.png" alt="monkey" class="enemy">
+
+	<?php if(array_key_exists('tempo_dormindo',$_SESSION)): ?>
+		<p class="snorlax_status">Turnos dorminado total: <?php print $_SESSION['tempo_dormindo']; ?></p>
+	<?php endif; ?>
 
 	<?php $life = $_SESSION['snorlax']['vida'][0]; ?>
 	<p class="snorlax_status"><?php print 'LP: ' . $life; ?></p>

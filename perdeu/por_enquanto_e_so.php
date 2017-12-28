@@ -39,6 +39,6 @@
 	<h1>Por enquanto é só... </h1>
 
 	<a href="../first_battle.php">Jogar Novamente</a>
-
+	
 </body>
 </html>

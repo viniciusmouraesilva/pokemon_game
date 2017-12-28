@@ -40,5 +40,13 @@
 
 	<a href="../first_battle.php">Tentar Novamente</a>
 
+	<?php if(isset($_COOKIE['tempo_dormindo'])): ?>
+			
+			<?php $total_tempo_dormindo = $_COOKIE['tempo_dormindo']; ?>
+			
+			<p>Total em turnos dormindo: <?php print $total_tempo_dormindo; ?>
+
+			<?php setcookie('tempo_dormindo'); ?></p>
+	<?php endif; ?>
 </body>
 </html>

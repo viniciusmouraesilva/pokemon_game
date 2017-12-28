@@ -56,6 +56,10 @@
 	<?php $life = $_SESSION['monkey']['vida'][0]; ?>
 	<p class="enemy_status"><?php print 'LP: ' . $life; ?></p>
 
+	<?php if(array_key_exists('tempo_dormindo',$_SESSION)): ?>
+		<p>Turnos dorminado total: <?php print $_SESSION['tempo_dormindo']; ?></p>
+	<?php endif; ?>
+
 	<img src="imagens/monkey.png" alt="monkey" class="enemy">
 
 	<?php $life = $_SESSION['snorlax']['vida'][0]; ?>
